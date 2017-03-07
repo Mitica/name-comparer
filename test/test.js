@@ -1,7 +1,7 @@
 'use strict';
 
-const compare = require('../lib').compare;
-const assert = require('assert');
+var compare = require('../lib').compare;
+var assert = require('assert');
 
 describe('compare', function () {
     it('`Name 1` == `name 1`', function () {
