@@ -16,11 +16,13 @@ compare('US', 'United States'); // true
 
 ### compare(name1:string, name2:string, options?:{ transforms:string[] }):boolean
 
-Compare two names. Return true if they match. Default transforms: [`INS`,`ABBR`].
+Compare two names. Return true if they match. Default transforms: [`CI`,`ABBR`].
 
 **valid transforms**:
 
-- `INS` - case insensitive;
+- `CI` - case insensitive;
 - `ABBR` - abbreviation;
 - `ATONIC` - ignore letters accents: `Ștefan` == `Stefan`;
-- `INS_ATONIC` - case insensitive atonic;
+- `CI_ATONIC` - case insensitive atonic;
+- `START` - name2 starts with name1: `University` == `University of NY`;
+- `CI_START` - case insensitive name2 starts with name1: `university` == `University of NY`;

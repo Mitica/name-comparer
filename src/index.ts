@@ -6,13 +6,15 @@ export type OptionsType = {
     transforms?: string[]
 };
 
-export const INSENSITIVE = 'INS';
+export const CI = 'CI';
 export const ABBREVIATION = 'ABBR';
 export const ATONIC = 'ATONIC';
-export const INSENSITIVE_ATONIC = 'INS_ATONIC';
+export const CI_ATONIC = 'CI_ATONIC';
+export const START = 'START';
+export const CI_START = 'CI_START';
 
 const OPTIONS = {
-    transforms: [INSENSITIVE, ABBREVIATION]
+    transforms: [CI, ABBREVIATION]
 };
 
 /**
@@ -34,7 +36,7 @@ export function compare(name1: string, name2: string, options?: OptionsType): bo
 
     for (var i = 0; i < transforms.length; i++) {
         switch (transforms[i]) {
-            case INSENSITIVE:
+            case CI:
                 if (compareInsensitive(name1, name2)) {
                     return true;
                 }
@@ -49,8 +51,18 @@ export function compare(name1: string, name2: string, options?: OptionsType): bo
                     return true;
                 }
                 break;
-            case INSENSITIVE_ATONIC:
+            case CI_ATONIC:
                 if (compareInsensitiveAtonic(name1, name2)) {
+                    return true;
+                }
+                break;
+            case START:
+                if (compareStart(name1, name2)) {
+                    return true;
+                }
+                break;
+            case CI_START:
+                if (compareInsensitiveStart(name1, name2)) {
                     return true;
                 }
                 break;
@@ -61,21 +73,31 @@ export function compare(name1: string, name2: string, options?: OptionsType): bo
     return false;
 }
 
-export function compareInsensitiveAtonic(name1: string, name2: string) {
+export function compareInsensitiveStart(name1: string, name2: string): boolean {
+    return compareStart(name1, name2, 'i');
+}
+
+export function compareStart(name1: string, name2: string, flags?: string): boolean {
+    var start = new RegExp('^' + name1 + '\\b', flags);
+
+    return start.test(name2);
+}
+
+export function compareInsensitiveAtonic(name1: string, name2: string): boolean {
     name1 = atonic.lowerCase(name1.toLowerCase());
     name2 = atonic.lowerCase(name2.toLowerCase());
 
     return name1 === name2;
 }
 
-export function compareAtonic(name1: string, name2: string) {
+export function compareAtonic(name1: string, name2: string): boolean {
     name1 = atonic(name1);
     name2 = atonic(name2);
 
     return name1 === name2;
 }
 
-export function compareAbbreviation(abbr: string, name: string) {
+export function compareAbbreviation(abbr: string, name: string): boolean {
     if (abbr.indexOf(' ') > 0) {
         if (isAbbrOf(nameToAbbr(abbr), name)) {
             return true;
@@ -84,7 +106,7 @@ export function compareAbbreviation(abbr: string, name: string) {
     return isAbbrOf(abbr, name);
 }
 
-export function compareInsensitive(name1: string, name2: string) {
+export function compareInsensitive(name1: string, name2: string): boolean {
     return name1.toLowerCase() === name2.toLowerCase();
 }
 

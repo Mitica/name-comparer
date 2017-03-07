@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "atonic": "^1.0.4",
-    "is-abbr-of": "0.0.1"
+    "is-abbr-of": "^0.1.0"
   }
 }
