@@ -1,0 +1,42 @@
+{
+  "name": "name-comparer",
+  "version": "0.1.0",
+  "description": "Init TypeScript npm module",
+  "main": "./lib/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "pretest": "npm run tsc",
+    "test": "mocha",
+    "tsc": "tsc",
+    "tscw": "tsc -w",
+    "preversion": "npm run tsc",
+    "postversion": "git push --follow-tags",
+    "prepublish": "npm run tsc"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mitica/name-comparer.git"
+  },
+  "keywords": [
+    "name",
+    "name-comparer"
+  ],
+  "author": "Dumitru Cantea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mitica/name-comparer/issues"
+  },
+  "homepage": "https://github.com/Mitica/name-comparer#readme",
+  "devDependencies": {
+    "@types/node": "^7.0.5",
+    "mocha": "^3.2.0",
+    "typescript": "^2.2.1"
+  },
+  "dependencies": {
+    "atonic": "^1.0.4",
+    "is-abbr-of": "0.0.1"
+  }
+}
