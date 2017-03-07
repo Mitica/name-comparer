@@ -1,6 +1,6 @@
 {
   "name": "name-comparer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Init TypeScript npm module",
   "main": "./lib/index.js",
   "types": "./types/index.d.ts",
